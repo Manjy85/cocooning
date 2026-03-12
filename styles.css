@@ -1,0 +1,119 @@
+/* Shared site styles (index) */
+:root {
+    /* Couleurs inspirées de l'affiche */
+    --bg-color: #FFC0CB;
+    --text-color: #1a1a1a;
+    --white-accent: #ffffff;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: 'Poppins', sans-serif;
+    background-image: radial-gradient(circle at 10% 20%, #ffffff44 0%, transparent 15%),
+                      radial-gradient(circle at 90% 80%, #ffffff44 0%, transparent 20%);
+    background-attachment: fixed;
+}
+
+.elegant-font {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+}
+
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 50px 20px;
+    text-align: center;
+}
+
+/* En-tête */
+.header-date { font-size: 2.2rem; margin-bottom: 10px; }
+.header-time { font-size: 1.8rem; font-weight: bold; margin-bottom: 25px; }
+.main-title { font-size: 3rem; margin-bottom: 20px; line-height: 1.2; }
+
+.address {
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin-bottom: 40px;
+    line-height: 1.6;
+}
+
+/* Activités */
+.activities {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 20px;
+    font-size: 1.2rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+
+.price { font-size: 3rem; font-weight: bold; margin: 20px 0 40px 0; }
+
+/* Détails (Piscine, boissons, équipe) */
+.details {
+    font-size: 1rem;
+    line-height: 1.8;
+    margin-bottom: 30px;
+    background: rgba(255, 255, 255, 0.4);
+    padding: 30px 20px;
+    border-radius: 20px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.details p { margin: 15px 0; }
+.team-text { text-transform: none; font-size: 1.1rem; font-weight: 600; }
+
+/* Focus section */
+.focus-section {
+    background-color: rgba(255, 255, 255, 0.7);
+    padding: 35px 25px;
+    border-radius: 20px;
+    text-align: left;
+    margin-bottom: 40px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.03);
+}
+
+.focus-section h3 { text-align: center; font-size: 1.6rem; margin-top: 0; margin-bottom: 15px; color: var(--text-color); }
+.focus-section p { font-size: 0.95rem; line-height: 1.7; margin-bottom: 20px; }
+.focus-section ul { list-style-type: none; padding: 0; margin: 0; }
+.focus-section li { font-size: 0.95rem; margin-bottom: 12px; padding-left: 30px; position: relative; line-height: 1.5; font-weight: 600; }
+.focus-section li::before { content: '✨'; position: absolute; left: 0; top: 0; }
+
+/* Formulaire */
+.form-section {
+    background-color: var(--white-accent);
+    padding: 40px 30px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    text-align: left;
+    margin-bottom: 40px;
+}
+
+.form-section h3 { text-align: center; font-size: 1.8rem; margin-top: 0; margin-bottom: 25px; }
+.form-group { margin-bottom: 20px; }
+label { display: block; font-size: 0.9rem; margin-bottom: 8px; font-weight: 600; color: #444; }
+input { width: 100%; padding: 14px; border: 2px solid #eee; border-radius: 10px; box-sizing: border-box; font-family: inherit; font-size: 1rem; transition: border-color 0.3s; }
+input:focus { outline: none; border-color: #ffb6ad; }
+button { width: 100%; background-color: var(--text-color); color: var(--white-accent); padding: 16px; border: none; border-radius: 10px; font-size: 1.1rem; font-weight: bold; cursor: pointer; transition: transform 0.2s, background 0.3s; margin-top: 10px; }
+button:hover { background-color: #333; transform: translateY(-2px); }
+
+
+/* Admin page specific styles scoped to body.admin */
+body.admin {
+    font-family: Arial, sans-serif;
+    background: #f5f5f5;
+    padding: 40px;
+}
+
+body.admin table { border-collapse: collapse; width: 100%; background: white; }
+body.admin th, body.admin td { padding: 12px; border-bottom: 1px solid #ddd; text-align: left; }
+body.admin th { background: #222; color: white; }
+
+body.admin #loginBox { max-width: 400px; margin: auto; background: white; padding: 30px; border-radius: 8px; text-align: center; }
+body.admin #adminContent { display: none; }

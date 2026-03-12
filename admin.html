@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Admin - Inscriptions</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="admin">
+
+<div id="loginBox">
+
+<h2>Accès admin</h2>
+
+<input type="password" id="password" placeholder="Mot de passe">
+<br><br>
+
+<button onclick="checkPassword()">Entrer</button>
+
+<p id="error" style="color:red;"></p>
+
+</div>
+
+<div id="adminContent">
+
+<h1>Liste des inscriptions</h1>
+
+<table>
+
+<thead>
+<tr>
+<th>Nom</th>
+<th>Téléphone</th>
+<th>Notes</th>
+</tr>
+</thead>
+
+<tbody></tbody>
+
+</table>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
+// Simple admin password flow using a fixed Supabase admin email.
+// Create an admin user in Supabase (Authentication → Users) with the email below.
+// Then enter only the password in this page — it will sign in that admin user
+// and, if authenticated, perform the SELECT (RLS must allow authenticated reads).
+
+const ADMIN_EMAIL = 'admin@example.com' // <-- create this user in Supabase and replace
+
+const SUPABASE_URL = "https://lqewxrcgyxrttlpogimo.supabase.co"
+const SUPABASE_KEY = "sb_publishable_tJ1BH_awdsJfRuhEERnpgg_hlpPGYGc"
+
+const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY)
+
+async function checkPassword(){
+	const password = document.getElementById('password').value
+	document.getElementById('error').innerText = ''
+
+	if (!password) {
+		document.getElementById('error').innerText = 'Entrez le mot de passe'
+		return
+	}
+
+	try {
+		const { data, error } = await supabaseClient.auth.signInWithPassword({
+			email: ADMIN_EMAIL,
+			password
+		})
+
+		if (error) {
+			console.error('Auth error', error)
+			document.getElementById('error').innerText = 'Mot de passe incorrect'
+			return
+		}
+
+		// Auth OK — show content and load inscriptions
+		document.getElementById('loginBox').style.display = 'none'
+		document.getElementById('adminContent').style.display = 'block'
+		await chargerInscriptions()
+
+	} catch (err) {
+		console.error(err)
+		document.getElementById('error').innerText = 'Erreur réseau'
+	}
+}
+
+async function chargerInscriptions(){
+	const { data, error } = await supabaseClient
+		.from('inscriptions')
+		.select('*')
+
+	if (error) {
+		console.error(error)
+		document.getElementById('error').innerText = 'Erreur lors de la récupération'
+		return
+	}
+
+	const tbody = document.querySelector('tbody')
+	tbody.innerHTML = ''
+
+	data.forEach(personne => {
+		const ligne = document.createElement('tr')
+		ligne.innerHTML = `\n      <td>${personne.Nom}</td>\n      <td>${personne.Telephone}</td>\n      <td>${personne.Notes ?? ''}</td>\n    `
+		tbody.appendChild(ligne)
+	})
+}
+
+</script>
+
+</body>
+</html>
