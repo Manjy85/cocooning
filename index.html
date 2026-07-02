@@ -3,92 +3,278 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="robots" content="noindex, nofollow"> 
-    <title>Après-midi Cocooning - Inscription</title>
-    
+    <meta name="robots" content="noindex, nofollow">
+    <title>Après-midi Cocooning — Samedi 20 Juin à Aubigny</title>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;1,600&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-    <div class="container">
-        
-        <div class="header-date elegant-font">Samedi 20 Juin</div>
-        <div class="header-time elegant-font">14h</div>
-        <h1 class="main-title elegant-font">Après midi cocooning</h1>
-        
-        <address class="address">
-            <a href="https://www.google.com/maps/search/?api=1&query=39+rue+du+vert+aiguillon+85430+Aubigny" target="_blank" rel="noopener">39 rue du vert aiguillon<br>85430 Aubigny — Phanie esthétique</a>
-        </address>
+    <header class="site-header">
+        <a href="#accueil" class="logo elegant-font">Après-midi Cocooning</a>
+        <nav class="site-nav" id="siteNav">
+            <a href="#programme">Programme</a>
+            <a href="#intervenantes">Les intervenantes</a>
+            <a href="#lieu">Le lieu</a>
+            <a href="#infos">Infos pratiques</a>
+            <a href="#galerie">Galerie</a>
+            <a href="#inscription" class="nav-cta">Réserver</a>
+        </nav>
+        <button class="nav-toggle" id="navToggle" aria-label="Ouvrir le menu">☰</button>
+    </header>
 
-        <div class="activities">
-            <div>🤍 Yoga</div>
-            <div>🤍 Shiatsu</div>
-            <div>🤍 Massage</div>
+    <section class="hero" id="accueil">
+        <div class="hero-content">
+            <p class="hero-kicker">Une parenthèse bien-être</p>
+            <h1 class="main-title elegant-font">Après-midi<br>Cocooning</h1>
+            <p class="hero-tagline">Yoga, shiatsu, massage — piscine, bain à remous et sauna.<br>Un après-midi rien que pour vous, avec Phanie, Anne-Sophie et Céline.</p>
+            <div class="hero-meta">
+                <span>Samedi 20 Juin 〰️ 14h 〰️ Aubigny (85)</span>
+            </div>
+            <a href="#inscription" class="btn btn-primary">Réserver ma place — 100 €</a>
         </div>
+        <div class="hero-scroll">▾</div>
+    </section>
 
-        <div class="price elegant-font">100 €</div>
+    <main>
 
-        <div class="details">
-            <p>Accès piscine, bain à remous, sauna.<br>(Extérieur)</p>
-            <p>Boissons chaudes, froides, gâteaux</p>
-            <p class="team-text">Venez passer un moment unique avec Phanie, Anne-Sophie et Céline</p>
-        </div>
-
-        <div class="focus-section">
-            <h3 class="elegant-font">Yoga avec Anne-Sophie</h3>
-            <p>
-                Dans un monde où nos plannings sont souvent chargés, je vous propose un espace pour vous reconnecter à l’essentiel : l’écoute de votre corps et de votre respiration. Mon approche est attentive et adaptée à chacune, pour vous accompagner vers un lâcher-prise bien mérité et une profonde bienveillance envers vous-même.
-            </p>
-            <ul>
-                <li>Séance de Yoga douce & Yoga sur chaise</li>
-                <li>Initiation à l'auto-massage ciblé (dos, membres, points d'appuis...)</li>
-                <li>Relaxation et méditation pour clôturer notre demi-journée en beauté</li>
-            </ul>
-        </div>
-
-        <div class="focus-section">
-            <h3 class="elegant-font">Massage avec Phanie</h3>
-            <p>
-                Nous portons souvent toute la fatigue de la journée sur nos épaules, Phanie, votre esthéticienne,
-                vous apporte une véritable parenthèse de décompression.
-            </p>
-            <p><strong>Atelier — choix :</strong></p>
-            <ul>
-                <li><strong>Massage cuir chevelu & visage :</strong> un enchaînement de manœuvres lissantes sur le visage, suivi
-                    d'un massage crânien pour détendre et relancer la circulation.</li>
-                <li><strong>Massage du dos :</strong> mouvements fluides alliés à des pressions ciblées sur les zones de stress
-                    (trapèzes, lombaires, cervicales) pour une sensation d'apaisement.</li>
-            </ul>
-        </div>
-
-        <div class="form-section">
-            <h3 class="elegant-font">Réservez votre place</h3>
-            
-            <form>
-                <div class="form-group">
-                    <label for="name">Nom & Prénom</label>
-                    <input type="text" id="name" name="Nom" required placeholder="Ex: Marie Dupont">
+        <!-- Programme -->
+        <section class="section" id="programme">
+            <div class="section-inner">
+                <p class="section-kicker">Le programme</p>
+                <h2 class="elegant-font">Un après-midi pour souffler</h2>
+                <p class="section-intro">
+                    Dès 14h, vous êtes accueilli·e·s autour de boissons chaudes, froides et de gâteaux.
+                    L'après-midi alterne ensuite ateliers bien-être et moments libres au bord de la piscine.
+                </p>
+                <div class="cards">
+                    <div class="card">
+                        <img src="images/cocooning-02.jpeg" alt="Séance de yoga sur chaise">
+                        <div class="card-body">
+                            <h3 class="elegant-font">🤍 Yoga</h3>
+                            <p>Yoga doux et yoga sur chaise avec Anne-Sophie : respiration, écoute du corps, auto-massage et méditation pour clôturer la journée.</p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img src="images/cocooning-21.jpeg" alt="Séance de shiatsu">
+                        <div class="card-body">
+                            <h3 class="elegant-font">🤍 Shiatsu</h3>
+                            <p>Avec Céline, des pressions douces héritées de la tradition japonaise pour relâcher les tensions et rééquilibrer l'énergie. <em><!-- TODO: description à valider avec Céline --></em></p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img src="images/cocooning-19.jpeg" alt="Massage du dos">
+                        <div class="card-body">
+                            <h3 class="elegant-font">🤍 Massage</h3>
+                            <p>Avec Phanie, au choix : massage cuir chevelu &amp; visage, ou massage du dos ciblé sur les zones de stress (trapèzes, lombaires, cervicales).</p>
+                        </div>
+                    </div>
                 </div>
-                
-                <div class="form-group">
-                    <label for="phone">Numéro de téléphone</label>
-                    <input type="tel" id="phone" name="Telephone" required placeholder="06 12 34 56 78">
+                <!-- TODO: ajouter un déroulé horaire précis si souhaité (ex: 14h accueil, 14h30 yoga, 16h ateliers...) -->
+            </div>
+        </section>
+
+        <!-- Intervenantes -->
+        <section class="section section-alt" id="intervenantes">
+            <div class="section-inner">
+                <p class="section-kicker">L'équipe</p>
+                <h2 class="elegant-font">Les intervenantes</h2>
+
+                <div class="split">
+                    <img src="images/cocooning-02.jpeg" alt="Anne-Sophie pendant une séance de yoga">
+                    <div class="split-text">
+                        <h3 class="elegant-font">Anne-Sophie — Yoga</h3>
+                        <p>
+                            Dans un monde où nos plannings sont souvent chargés, je vous propose un espace pour vous
+                            reconnecter à l'essentiel : l'écoute de votre corps et de votre respiration. Mon approche est
+                            attentive et adaptée à chacun·e, pour vous accompagner vers un lâcher-prise bien mérité et une
+                            profonde bienveillance envers vous-même.
+                        </p>
+                        <ul>
+                            <li>Séance de Yoga douce &amp; Yoga sur chaise</li>
+                            <li>Initiation à l'auto-massage ciblé (dos, membres, points d'appuis...)</li>
+                            <li>Relaxation et méditation pour clôturer notre demi-journée en beauté</li>
+                        </ul>
+                    </div>
                 </div>
 
-                <div class="form-group">
-                    <label for="health">Contre-indications (allergies, grossesse...)</label>
-                    <input type="text" id="health" name="Sante" placeholder="Optionnel">
+                <div class="split reverse">
+                    <img src="images/cocooning-19.jpeg" alt="Phanie pendant un massage du dos">
+                    <div class="split-text">
+                        <h3 class="elegant-font">Phanie — Massage &amp; Esthétique</h3>
+                        <p>
+                            Nous portons souvent toute la fatigue de la journée sur nos épaules. Phanie, votre esthéticienne,
+                            vous apporte une véritable parenthèse de décompression.
+                        </p>
+                        <p><strong>Atelier — au choix :</strong></p>
+                        <ul>
+                            <li><strong>Massage cuir chevelu &amp; visage :</strong> manœuvres lissantes sur le visage, suivies d'un massage crânien pour détendre et relancer la circulation.</li>
+                            <li><strong>Massage du dos :</strong> mouvements fluides alliés à des pressions ciblées sur les zones de stress (trapèzes, lombaires, cervicales).</li>
+                        </ul>
+                    </div>
                 </div>
 
-                <button type="submit">Confirmer mon inscription</button>
-            </form>
+                <div class="split">
+                    <img src="images/cocooning-21.jpeg" alt="Céline pendant une séance de shiatsu">
+                    <div class="split-text">
+                        <h3 class="elegant-font">Céline — Shiatsu</h3>
+                        <p>
+                            <!-- TODO: présentation de Céline à compléter -->
+                            Céline vous initie au shiatsu, un art du toucher d'origine japonaise fondé sur des pressions
+                            douces le long des méridiens, pour dénouer les tensions et retrouver un profond apaisement.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Le lieu -->
+        <section class="section" id="lieu">
+            <div class="section-inner">
+                <p class="section-kicker">Le lieu</p>
+                <h2 class="elegant-font">Une maison, une piscine, un sauna</h2>
+                <div class="split">
+                    <img src="images/cocooning-23.jpeg" alt="Piscine extérieure et terrasse">
+                    <div class="split-text">
+                        <p>
+                            La journée se déroule dans un cadre privé à Aubigny, chez <strong>Phanie esthétique</strong> :
+                            terrasse, piscine chauffée, bain à remous et sauna extérieur sont à votre disposition
+                            tout l'après-midi.
+                        </p>
+                        <ul>
+                            <li>Piscine &amp; bain à remous (extérieur)</li>
+                            <li>Sauna tonneau</li>
+                            <li>Transats, serviettes fournies</li>
+                            <li>Boissons chaudes, froides et gâteaux</li>
+                        </ul>
+                        <p class="muted"><!-- TODO: préciser ce qu'il faut apporter (maillot, tenue souple...) -->
+                            Pensez à apporter votre maillot de bain et une tenue confortable.</p>
+                    </div>
+                </div>
+
+                <div class="split locate">
+                    <div class="split-text">
+                        <h3 class="elegant-font">Nous localiser</h3>
+                        <ul>
+                            <li>À 10 min de La Roche-sur-Yon</li>
+                            <li>À 35 min des Sables-d'Olonne</li>
+                            <li>À 1h de Nantes</li>
+                            <!-- TODO: ajuster les temps de trajet si besoin -->
+                            <li>Parking sur place et à proximité</li>
+                            <li>Pensez au covoiturage entre participant·e·s</li>
+                        </ul>
+                        <p>
+                            <a href="https://www.google.com/maps/search/?api=1&query=39+rue+du+vert+aiguillon+85430+Aubigny" target="_blank" rel="noopener">
+                                39 rue du vert aiguillon, 85430 Aubigny — ouvrir dans Google Maps
+                            </a>
+                        </p>
+                    </div>
+                    <div class="map-wrap">
+                        <iframe
+                            src="https://maps.google.com/maps?q=39+rue+du+vert+aiguillon+85430+Aubigny&z=12&output=embed"
+                            title="Carte — 39 rue du vert aiguillon, 85430 Aubigny"
+                            loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade"
+                            allowfullscreen></iframe>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Infos pratiques -->
+        <section class="section section-alt" id="infos">
+            <div class="section-inner">
+                <p class="section-kicker">Infos pratiques</p>
+                <h2 class="elegant-font">Ce qu'il faut savoir</h2>
+                <div class="info-grid">
+                    <div class="info-item">
+                        <div class="info-emoji">📅</div>
+                        <h3>Date &amp; horaire</h3>
+                        <p>Samedi 20 Juin, à partir de 14h.<br><!-- TODO: heure de fin à préciser --></p>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-emoji">📍</div>
+                        <h3>Adresse</h3>
+                        <p><a href="https://www.google.com/maps/search/?api=1&query=39+rue+du+vert+aiguillon+85430+Aubigny" target="_blank" rel="noopener">39 rue du vert aiguillon<br>85430 Aubigny — Phanie esthétique</a></p>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-emoji">💶</div>
+                        <h3>Tarif</h3>
+                        <p>100 € par personne, tout compris.<br><!-- TODO: modalités de paiement à préciser --></p>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-emoji">👥</div>
+                        <h3>Places limitées</h3>
+                        <p>Petit groupe pour préserver l'intimité et la qualité des ateliers. <!-- TODO: nombre de places exact --></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Galerie -->
+        <section class="section" id="galerie">
+            <div class="section-inner">
+                <p class="section-kicker">Galerie</p>
+                <h2 class="elegant-font">Un avant-goût en images</h2>
+                <div class="gallery">
+                    <img src="images/cocooning-09.jpeg" alt="Vue de la piscine et du sauna depuis la maison">
+                    <img src="images/cocooning-01.jpeg" alt="Séance de yoga en groupe">
+                    <img src="images/cocooning-14.jpeg" alt="Table de douceurs et boissons">
+                    <img src="images/cocooning-03.jpeg" alt="Détente au bord de la piscine">
+                    <img src="images/cocooning-16.jpeg" alt="Serviettes Phanie Esthétique au bord de la piscine">
+                    <img src="images/cocooning-26.jpeg" alt="Transats sous un parasol">
+                </div>
+            </div>
+        </section>
+
+        <!-- Inscription -->
+        <section class="section section-form" id="inscription">
+            <div class="section-inner narrow">
+                <p class="section-kicker">Inscription</p>
+                <h2 class="elegant-font">Réservez votre place</h2>
+                <p class="section-intro">Samedi 20 Juin à 14h — 100 € — Aubigny (85)</p>
+
+                <form class="form-card">
+                    <div class="form-group">
+                        <label for="name">Nom &amp; Prénom</label>
+                        <input type="text" id="name" name="Nom" required placeholder="Ex: Marie Dupont">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Numéro de téléphone</label>
+                        <input type="tel" id="phone" name="Telephone" required placeholder="06 12 34 56 78">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="health">Contre-indications (allergies, grossesse...)</label>
+                        <input type="text" id="health" name="Sante" placeholder="Optionnel">
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-block">Confirmer mon inscription</button>
+                </form>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <div>
+                <h3 class="elegant-font">Après-midi Cocooning</h3>
+                <p>Phanie esthétique<br>39 rue du vert aiguillon<br>85430 Aubigny</p>
+            </div>
+            <div>
+                <h3 class="elegant-font">Contact</h3>
+                <p><!-- TODO: téléphone / email / Instagram de contact -->
+                    Une question ? Contactez Phanie, Anne-Sophie ou Céline.</p>
+            </div>
         </div>
-
-    </div>
+        <p class="footer-credit">© 2026 Après-midi Cocooning — Phanie, Anne-Sophie &amp; Céline</p>
+    </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script>
@@ -118,6 +304,14 @@
                 form.reset()
             }
         })
+
+        // Menu mobile
+        const navToggle = document.getElementById("navToggle")
+        const siteNav = document.getElementById("siteNav")
+        navToggle.addEventListener("click", () => siteNav.classList.toggle("open"))
+        siteNav.querySelectorAll("a").forEach(a =>
+            a.addEventListener("click", () => siteNav.classList.remove("open"))
+        )
     </script>
 </body>
 </html>

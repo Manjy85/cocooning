@@ -1,115 +1,176 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 <head>
-<meta charset="UTF-8">
-<title>Admin - Inscriptions</title>
-<link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Admin — Inscriptions Cocooning</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;1,600&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="styles.css">
 </head>
 
 <body class="admin">
 
-<div id="loginBox">
+    <div id="loginBox" class="admin-login">
+        <h2 class="elegant-font">Accès admin</h2>
+        <p class="admin-sub">Après-midi Cocooning — inscriptions</p>
+        <input type="password" id="password" placeholder="Mot de passe" autocomplete="current-password">
+        <button class="btn btn-primary btn-block" onclick="checkPassword()">Entrer</button>
+        <p id="error" class="admin-error"></p>
+    </div>
 
-<h2>Accès admin</h2>
+    <div id="adminContent" class="admin-panel">
+        <header class="admin-header">
+            <div>
+                <h1 class="elegant-font">Inscriptions</h1>
+                <p id="count" class="admin-sub"></p>
+            </div>
+            <div class="admin-actions">
+                <button class="btn btn-ghost" onclick="chargerInscriptions()">↻ Actualiser</button>
+                <button class="btn btn-ghost" onclick="exportCSV()">⬇ Export CSV</button>
+                <button class="btn btn-ghost" onclick="logout()">Déconnexion</button>
+            </div>
+        </header>
 
-<input type="password" id="password" placeholder="Mot de passe">
-<br><br>
+        <div class="table-wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Nom</th>
+                        <th>Téléphone</th>
+                        <th>Notes / contre-indications</th>
+                        <th>Inscrit le</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+            <p id="empty" class="admin-sub" style="display:none; padding: 20px;">Aucune inscription pour le moment.</p>
+        </div>
+    </div>
 
-<button onclick="checkPassword()">Entrer</button>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-<p id="error" style="color:red;"></p>
+    <script>
+    // Simple admin password flow using a fixed Supabase admin email.
+    // Create an admin user in Supabase (Authentication → Users) with the email below.
+    // Then enter only the password in this page — it will sign in that admin user
+    // and, if authenticated, perform the SELECT (RLS must allow authenticated reads).
 
-</div>
+    const ADMIN_EMAIL = 'maxence.retailleau@gmail.com'
 
-<div id="adminContent">
+    const SUPABASE_URL = "https://lqewxrcgyxrttlpogimo.supabase.co"
+    const SUPABASE_KEY = "sb_publishable_tJ1BH_awdsJfRuhEERnpgg_hlpPGYGc"
 
-<h1>Liste des inscriptions</h1>
+    const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY)
 
-<table>
+    let inscriptions = []
 
-<thead>
-<tr>
-<th>Nom</th>
-<th>Téléphone</th>
-<th>Notes</th>
-</tr>
-</thead>
+    document.getElementById('password').addEventListener('keydown', e => {
+        if (e.key === 'Enter') checkPassword()
+    })
 
-<tbody></tbody>
+    async function checkPassword(){
+        const password = document.getElementById('password').value
+        document.getElementById('error').innerText = ''
 
-</table>
+        if (!password) {
+            document.getElementById('error').innerText = 'Entrez le mot de passe'
+            return
+        }
 
-</div>
+        try {
+            const { error } = await supabaseClient.auth.signInWithPassword({
+                email: ADMIN_EMAIL,
+                password
+            })
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+            if (error) {
+                console.error('Auth error', error)
+                document.getElementById('error').innerText = 'Mot de passe incorrect'
+                return
+            }
 
-<script>
-// Simple admin password flow using a fixed Supabase admin email.
-// Create an admin user in Supabase (Authentication → Users) with the email below.
-// Then enter only the password in this page — it will sign in that admin user
-// and, if authenticated, perform the SELECT (RLS must allow authenticated reads).
+            document.getElementById('loginBox').style.display = 'none'
+            document.getElementById('adminContent').style.display = 'block'
+            await chargerInscriptions()
 
-const ADMIN_EMAIL = 'admin@example.com' // <-- create this user in Supabase and replace
+        } catch (err) {
+            console.error(err)
+            document.getElementById('error').innerText = 'Erreur réseau'
+        }
+    }
 
-const SUPABASE_URL = "https://lqewxrcgyxrttlpogimo.supabase.co"
-const SUPABASE_KEY = "sb_publishable_tJ1BH_awdsJfRuhEERnpgg_hlpPGYGc"
+    async function logout(){
+        await supabaseClient.auth.signOut()
+        location.reload()
+    }
 
-const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY)
+    function escapeHtml(s){
+        return String(s ?? '').replace(/[&<>"']/g, c => ({
+            '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;'
+        }[c]))
+    }
 
-async function checkPassword(){
-	const password = document.getElementById('password').value
-	document.getElementById('error').innerText = ''
+    function formatDate(iso){
+        if (!iso) return ''
+        return new Date(iso).toLocaleString('fr-FR', {
+            day: '2-digit', month: '2-digit', year: 'numeric',
+            hour: '2-digit', minute: '2-digit'
+        })
+    }
 
-	if (!password) {
-		document.getElementById('error').innerText = 'Entrez le mot de passe'
-		return
-	}
+    async function chargerInscriptions(){
+        const { data, error } = await supabaseClient
+            .from('inscriptions')
+            .select('*')
+            .order('created_at', { ascending: false })
 
-	try {
-		const { data, error } = await supabaseClient.auth.signInWithPassword({
-			email: ADMIN_EMAIL,
-			password
-		})
+        if (error) {
+            console.error(error)
+            alert('Erreur lors de la récupération des inscriptions')
+            return
+        }
 
-		if (error) {
-			console.error('Auth error', error)
-			document.getElementById('error').innerText = 'Mot de passe incorrect'
-			return
-		}
+        inscriptions = data
+        const tbody = document.querySelector('tbody')
+        tbody.innerHTML = ''
 
-		// Auth OK — show content and load inscriptions
-		document.getElementById('loginBox').style.display = 'none'
-		document.getElementById('adminContent').style.display = 'block'
-		await chargerInscriptions()
+        document.getElementById('count').innerText =
+            data.length + ' inscription' + (data.length > 1 ? 's' : '')
+        document.getElementById('empty').style.display = data.length ? 'none' : 'block'
 
-	} catch (err) {
-		console.error(err)
-		document.getElementById('error').innerText = 'Erreur réseau'
-	}
-}
+        data.forEach((personne, i) => {
+            const ligne = document.createElement('tr')
+            ligne.innerHTML = `
+                <td>${data.length - i}</td>
+                <td>${escapeHtml(personne.Nom)}</td>
+                <td><a href="tel:${escapeHtml(personne.Telephone)}">${escapeHtml(personne.Telephone)}</a></td>
+                <td>${escapeHtml(personne.Notes)}</td>
+                <td>${formatDate(personne.created_at)}</td>
+            `
+            tbody.appendChild(ligne)
+        })
+    }
 
-async function chargerInscriptions(){
-	const { data, error } = await supabaseClient
-		.from('inscriptions')
-		.select('*')
-
-	if (error) {
-		console.error(error)
-		document.getElementById('error').innerText = 'Erreur lors de la récupération'
-		return
-	}
-
-	const tbody = document.querySelector('tbody')
-	tbody.innerHTML = ''
-
-	data.forEach(personne => {
-		const ligne = document.createElement('tr')
-		ligne.innerHTML = `\n      <td>${personne.Nom}</td>\n      <td>${personne.Telephone}</td>\n      <td>${personne.Notes ?? ''}</td>\n    `
-		tbody.appendChild(ligne)
-	})
-}
-
-</script>
+    function exportCSV(){
+        const rows = [['Nom', 'Téléphone', 'Notes', 'Inscrit le']]
+        inscriptions.forEach(p => rows.push([p.Nom, p.Telephone, p.Notes ?? '', formatDate(p.created_at)]))
+        const csv = rows.map(r =>
+            r.map(v => '"' + String(v ?? '').replace(/"/g, '""') + '"').join(';')
+        ).join('\n')
+        const blob = new Blob(['﻿' + csv], { type: 'text/csv;charset=utf-8;' })
+        const a = document.createElement('a')
+        a.href = URL.createObjectURL(blob)
+        a.download = 'inscriptions-cocooning.csv'
+        a.click()
+        URL.revokeObjectURL(a.href)
+    }
+    </script>
 
 </body>
 </html>
